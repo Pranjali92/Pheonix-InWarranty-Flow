@@ -50,6 +50,25 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: newman/
+
+      - name: send Email Notification
+        if: always()
+        uses: dawidd6/action-send-mail@v9
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: $ {{ secrets.EMAIL_PASSWORD }}
+          subject: Pheonix Inwarranty Flow Test Execution Notification
+          to: pranjalinirmal92@gmail.com
+          from: ${{ secrets.Email_USERNAME }}
+          body: |
+                Hi,
+                Pheonix Inwarranty Flow Has been executed. The Report has been published and the URL is :
+                https://pranjali92.github.io/Pheonix-InWarranty-Flow/
+
+      
+
       
              
        
